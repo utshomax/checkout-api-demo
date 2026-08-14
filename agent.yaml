@@ -1,0 +1,11 @@
+id: 6a7ec9efb40c96830bf0dd69
+name: WS Remediation Agent
+description: Applies the proposed fix and raises a PR
+model:
+  provider: OpenAI
+  name: gpt-4o-mini
+  temperature: 0.1
+  top_p: 0.9
+features: []
+tools: []
+max_iterations: 25
