@@ -16,7 +16,8 @@ router.post('/checkout', async (req, res, next) => {
     const subtotal = cart.items.reduce((sum, item) => sum + item.price * item.qty, 0);
 
     const coupon = await getCoupon(couponCode);
-    const discount = subtotal * coupon.discount;
+    // INC-1: getCoupon returns null for expired or unknown codes.
+    const discount = coupon ? subtotal * coupon.discount : 0;
     const totalMinorUnits = toMinorUnits(subtotal - discount);
 
     const order = await createOrder({ userId, totalMinorUnits, items: cart.items });
